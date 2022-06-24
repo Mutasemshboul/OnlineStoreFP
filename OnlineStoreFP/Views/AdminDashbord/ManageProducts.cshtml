@@ -1,0 +1,45 @@
+﻿@model Tuple<IEnumerable<JoinTable>>
+@{
+    ViewData["Title"] = "ManageProducts";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+<div class = "container-fluid">
+
+<h1>ManageProducts</h1>
+
+<a asp-controller="ProductFps" asp-action="Create" class="btn btn-primary">Create New</a>
+<a asp-controller="ProductFps" asp-action="Index" class="btn btn-primary">Edit Or Delete Category</a>
+<table class="table table-responsive table align-items-center table-flush table-hover" id="example">
+    <thead>
+    <tr>
+        <th >product Name</th>
+        <th>Price</th>
+        <th>Sale</th>
+        <th>Quantity</th>
+        <th>Store name</th>
+        <th>Category Name</th>
+        <th>Image</th>
+
+                                                
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item1)
+            {
+                    <tr>
+                                                            
+                        <td>@item.productFp.Productname</td>
+                        <td>@item.productFp.Price</td>
+                        <td>@item.productFp.Sale</td>
+                        <td>@item.productFp.Quantity</td>
+                        <td>@item.store.Storename</td>
+                        <td>@item.categoryFp.Categoryname</td>
+                        <td><img src="/Image/@item.productFp.Imagepath" width="100" height="100" /></td>
+
+
+                        
+                        </tr>
+            }​
+    </tbody>
+</table>
+</div>

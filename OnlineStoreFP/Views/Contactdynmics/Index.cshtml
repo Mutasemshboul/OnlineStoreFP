@@ -1,0 +1,85 @@
+﻿@model IEnumerable<OnlineStoreFP.Models.Contactdynmic>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+
+<div class="table-responsive-lg">
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Information)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contactus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone2)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Information)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contactus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone2)
+            </td>
+            <td>
+                <a class="fa fa-edit" asp-action="Edit" asp-route-id="@item.Id"> </a> |
+                <a class="fa fa-bars" asp-action="Details" asp-route-id="@item.Id"> </a> |
+                <a class="fa fa-times" asp-action="Delete" asp-route-id="@item.Id"> </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

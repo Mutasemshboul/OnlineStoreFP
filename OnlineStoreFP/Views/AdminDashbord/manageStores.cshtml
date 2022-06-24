@@ -1,0 +1,34 @@
+﻿@model Tuple<IEnumerable<JoinTable>>
+@{
+    ViewData["Title"] = "manageStores";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+
+<h1>manageStores</h1>
+
+<a asp-controller="Stores" asp-action="Create" class="btn btn-primary">Create New</a>
+<a asp-controller="Stores" asp-action="Index" class="btn btn-primary">Edit Or Delete Category</a>
+<table class="table table-responsive" id="example">
+    <thead>
+    <tr>
+        <th >Store Name</th>
+        <th>Category name</th>
+        @*<th>Product name</th>*@
+
+                                                
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item1)
+            {
+                    <tr>
+                                                            
+                        <td>@item.store.Storename</td>
+                        <td>@item.categoryFp.Categoryname</td>
+                        @*<td>@item.productFp.Productname</td>*@
+
+                        
+                        </tr>
+            }​
+    </tbody>
+</table>

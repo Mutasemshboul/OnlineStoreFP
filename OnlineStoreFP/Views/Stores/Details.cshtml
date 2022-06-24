@@ -1,0 +1,37 @@
+﻿@model OnlineStoreFP.Models.Store
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Storename)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Storename)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Categoryid)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Storeid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

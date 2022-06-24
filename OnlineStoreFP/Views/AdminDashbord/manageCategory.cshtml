@@ -1,0 +1,31 @@
+﻿@model Tuple<IEnumerable<OnlineStoreFP.Models.CategoryFp>>
+@{
+    ViewData["Title"] = "manageCategory";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+
+<h1>manageCategory</h1>
+<a asp-controller="CategoryFps" asp-action="Create" class="btn btn-primary">Create New</a>
+<a asp-controller="CategoryFps" asp-action="Index" class="btn btn-primary">Edit Or Delete Category</a>
+<table class="table table-responsive" id="example">
+    <thead>
+    <tr>
+        <th>Category Name</th>
+        <th>Category Image</th>
+
+                                                
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item1)
+            {
+                    <tr>
+                                                            
+                        <td>@item.Categoryname</td>
+                        <td>@item.Imagepath</td>
+
+                        
+                        </tr>
+            }​
+    </tbody>
+</table>

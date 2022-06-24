@@ -1,0 +1,66 @@
+﻿@model IEnumerable<JoinTable>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+
+}
+
+@*<h1>Index</h1>*@
+<h1>Hello @ViewBag.namecustomer</h1>
+<div class="card-group">
+  <div class="card">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+      <h5 class="card-title">Number of Customer</h5>
+      <p class="card-text h1">@ViewBag.noofcustomer</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+      <h5 class="card-title">Number Of sotres</h5>
+      <p class="card-text h1">@ViewBag.noofstores</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+      <h5 class="card-title">Number Of products</h5>
+      <p class="card-text h1">@ViewBag.noofproducts</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+</div>
+<div class="card-group">
+  <div class="card">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+      <h5 class="card-title">Number of Categories</h5>
+      <p class="card-text h1">@ViewBag.noofcategory</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+      <h5 class="card-title">Number of messages</h5>
+      <p class="card-text h1">@ViewBag.noofmessege</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    @*<img class="card-img-top" src="..." alt="Card image cap">*@
+    <div class="card-body">
+      <h5 class="card-title">Max Price Of products</h5>
+      <p class="card-text h1">@ViewBag.maxprice</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+
+  
+</div>
+
+

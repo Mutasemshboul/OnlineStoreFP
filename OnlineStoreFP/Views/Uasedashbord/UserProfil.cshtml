@@ -1,0 +1,81 @@
+﻿@model OnlineStoreFP.Models.UpdateProfile
+@{
+    ViewData["Title"] = "UserProfil";
+    Layout = "~/Views/Shared/_UasedashbordLayout.cshtml";
+}
+
+<h1>UserProfile</h1>
+@if (Model != null)
+{
+    <div class="row">
+        <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <center class="mt-4"> 
+                        <img src="~/Image/@ViewBag.Userinfo.Imagepath" class="img-circle"width="150" />
+                        <h4 class="card-title mt-2">@ViewBag.Userinfo.Fname</h4>
+                        
+                        <div class="row text-center justify-content-md-center">
+                            
+                           
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+            <div class="card">
+                <!-- Tab panes -->
+                            <div class="card-body">
+                    <form class="form-horizontal form-material mx-2" asp-controller="Uasedashbord" asp-action="UserProfil" enctype="multipart/form-data" >
+                        <div class="form-group">
+                            <label class="col-md-12">First Name</label>
+                            <div class="col-md-12">
+                                <input type="text" asp-for="FName" placeholder="@ViewBag.Userinfo.Fname " 
+                                                class="form-control form-control-line">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Last Name</label>
+                            <div class="col-md-12">
+                                <input type="text" asp-for="LName" placeholder="@ViewBag.Userinfo.Lname" 
+                                                class="form-control form-control-line">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="example-email" class="col-md-12">Email</label>
+                            <div class="col-md-12">
+                                <input type="email" asp-for="Email" placeholder=@ViewBag.emailcustomer
+                                                class="form-control form-control-line">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Choose Image</label>
+                            <div class="col-md-12">
+                                <input asp-for="ImageFile" class="form-control form-control-line">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Password</label>
+                            <div class="col-md-12">
+                                <input type="text" asp-for="Password" placeholder="@ViewBag.passwordcustomer"
+                                                class="form-control form-control-line">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success" >Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+                </div>
+}

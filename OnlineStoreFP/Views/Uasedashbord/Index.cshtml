@@ -1,0 +1,73 @@
+﻿@model IEnumerable<JoinTable>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UasedashbordLayout.cshtml";
+}
+
+<h1>Welecome @ViewBag.namecustomer </h1>
+
+@*<form asp-controller="Uasedashbord"asp-action="Index">
+    
+    <label>Date from</label>
+    <input type="date" id="Dfrom" name="Dfrom" />
+    <label>Date To</label>
+    <input type="date" id="Dto" name="Dto" />
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>*@
+
+
+@if (Model != null)
+{
+    <table class="table table-light" >
+        <tr>
+            <th>Name</th>
+            <th>productname</th>
+            @*<th>Date from</th>
+                <th>Date To</th>*@
+            <th>productprice</th>
+            <th>quantity</th>
+            <th>SUM</th>
+
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr >
+                <td>@item.userFp.Fname</td>
+                <td>@item.productFp.Productname</td>
+                @*<td>@item.productuserFp.Datefrom</td>
+                    <td>@item.productuserFp.Dateto</td>*@
+                <td class="TT">@item.productFp.Price</td>
+                <td class="TTT">@item.productuserFp.Quantity</td>
+                <td class="TTTT"></td>
+
+
+            </tr>
+        }
+        ​
+    </table>
+    }
+
+
+@*<h4 class="text text-black" id="totalofsum"></h4>*@
+
+
+<script>
+
+    var price = document.getElementsByClassName('TT')
+    var sum11 = 0
+    var quantity = document.getElementsByClassName('TTT')
+    var sum = document.getElementsByClassName('TTTT')
+    var totalofsum = document.getElementById('totalofsum')
+    for (let i = 0; i < price.length; i++) {
+
+
+
+        var sum1 = parseFloat(price[i].innerHTML) * parseFloat(quantity[i].innerHTML);
+        sum11 += sum1
+        sum[i].innerHTML = sum1;
+
+    }
+    totalofsum.innerHTML = 'Total of sum : ' +  sum11;
+
+</script>

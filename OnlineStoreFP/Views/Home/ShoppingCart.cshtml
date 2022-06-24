@@ -1,0 +1,237 @@
+﻿@model IEnumerable<OnlineStoreFP.Models.ShoppingCart>
+@{
+    ViewData["Title"] = "ShoppingCart";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Male-Fashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/homepage/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/homepage/css/style.css" type="text/css">
+</head>
+
+<body onload="Calc()">
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shopping Cart</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in Model){
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img style="border-radius:20%;" width="100" height="100" src="~/Image/@item.Product.Imagepath">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>@Html.DisplayFor(modelItem => item.Product.Productname) </h6>
+                                            <h5 id="prc" class="prc">@Html.DisplayFor(modelItem => item.Product.Price)</h5>
+                                           
+                                        </div>
+                                    </td>
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                <input  class="qty" type="number" min = "1" value="1" onchange="Calc()" >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price">  </td>
+                                    <td><form asp-controller="ShoppingCarts" asp-action="Delete">
+                                <input type="hidden" class="cartsid" name = "id"  asp-for="@item.Id" />
+                                <input type="submit" value="Delete" class="btn btn-danger" /> 
+                                
+                                </form></td>
+                                    @*<td class="cart__close">< href="#" class="fa fa-close"></></td>*@
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a asp-controller = "Home" asp-action="Shops">Continue Shopping</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn update__btn">
+                                <a href="#" onclick="AddQty()" ><i class="fa fa-spinner"></i> Update cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart__discount">
+                        <h6>Discount codes</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Coupon code">
+                            <button type="submit">Apply</button>
+                        </form>
+                    </div>
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            
+                            <li>Total <span id="totalofsum"></span></li>
+                        </ul>
+                        <a asp-controller="Home" asp-action="CheckOut"   class="primary-btn">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+   
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+
+    <script>
+        
+        
+        function Calc(){
+            var sumAllProduct = 0
+            const quantites = document.getElementsByClassName('qty');
+            const prices = document.getElementsByClassName('prc');
+            const eachPrice = document.getElementsByClassName('cart__price');
+
+            for(var i=0; i<quantites.length; i++ ) {
+              
+                sumAllProduct += Number(prices[i].innerText) * Number(quantites[i].value);
+                eachPrice[i].innerText = Number(prices[i].innerText) * Number(quantites[i].value) + " $";
+                
+            }
+        
+            document.getElementById('totalofsum').innerText = sumAllProduct + " $";
+            document.getElementsByClassName('cart__price') = eachPrice;
+        
+        }
+        
+
+       function AddQty()
+       {
+          const quantites = document.getElementsByClassName('qty');
+          const cartsid = document.getElementsByClassName('cartsid');
+          
+          for(var i = 0; i< quantites.length;i++)
+          {
+              var id = cartsid[i].value;
+              var qty = quantites[i].value;
+
+
+             $.ajax({
+                url: "/Home/UpdataQty",
+                type: "POST",
+                data: { id:id, qty:qty},
+                success: function (data) {
+
+                    console.log(data);
+                   }
+
+                });
+
+
+             
+          }
+
+           
+
+       }
+    </script>
+
+    
+   @* <script>
+
+    var price = document.getElementsByClassName('TT')
+    var sum11 = 0
+    var quantity = document.getElementsByClassName('TTT')
+    var sum = document.getElementsByClassName('TTTT')
+    var totalofsum = document.getElementById('totalofsum')
+    for (let i = 0; i < price.length; i++) {
+
+
+
+        var sum1 = parseFloat(price[i].innerHTML) * parseFloat(quantity[i].innerHTML);
+        sum11 += sum1
+        sum[i].innerHTML = sum1;
+
+    }
+    totalofsum.innerHTML = 'Total of sum : ' +  sum11;
+
+</script>*@
+    <script src="~/homepage/js/jquery-3.3.1.min.js"></script>
+    <script src="~/homepage/js/bootstrap.min.js"></script>
+    <script src="~/homepage/js/jquery.nice-select.min.js"></script>
+    <script src="~/homepage/js/jquery.nicescroll.min.js"></script>
+    <script src="~/homepage/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/homepage/js/jquery.countdown.min.js"></script>
+    <script src="~/homepage/js/jquery.slicknav.js"></script>
+    <script src="~/homepage/js/mixitup.min.js"></script>
+    <script src="~/homepage/js/owl.carousel.min.js"></script>
+    <script src="~/homepage/js/main.js"></script>
+</body>
+
+</html>

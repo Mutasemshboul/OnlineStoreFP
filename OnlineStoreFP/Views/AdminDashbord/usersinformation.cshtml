@@ -1,0 +1,116 @@
+﻿@model Tuple<IEnumerable<JoinTable>,IEnumerable<OnlineStoreFP.Models.UserFp>>
+
+@{
+    ViewData["Title"] = "usersinformation";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+ <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/admindashbordstatic/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/admindashbordstatic/assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="~/admindashbordstatic/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="~/admindashbordstatic/assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/admindashbordstatic/css/style.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="~/admindashbordstatic/css/pages/dashboard1.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/admindashbordstatic/css/colors/default.css" id="theme" rel="stylesheet">
+
+<h1>User's information</h1> 
+
+
+<a asp-controller="UserFps" asp-action="Create" class="btn btn-primary">Create New</a>
+<a asp-controller="UserFps" asp-action="Index" class="btn btn-primary">Edit Or Delete Users</a>
+
+<div class="row">
+<!-- column -->
+<div class="col-12">
+<div class="card">
+<div class="card-body">
+
+<div class="table-responsive">
+<table class="table table-responsive" id="example">
+    <thead>
+    <tr>
+        <th>Customer Name </th>
+        <th>Customer Email </th>
+        <th>Customer Image</th>
+
+                                                
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item1)
+            {
+                    <tr>
+                                                            
+                        <td>@item.userFp.Fname @item.userFp.Lname</td>
+                        <td>@item.userloginFp.Email</td>
+                        <td><img src="/Image/@item.userFp.Imagepath" width="100" height="100" /></td>
+
+
+
+
+                        
+                        </tr>
+                
+            }​
+    </tbody>
+</table>
+
+<script>
+
+    var price = document.getElementsByClassName('TT')
+    var sum11 = 0
+    var quantity = document.getElementsByClassName('TTT')
+    var sum = document.getElementsByClassName('TTTT')
+    var totalofsum = document.getElementById('totalofsum')
+    for (let i = 0; i < price.length; i++) {
+
+
+
+        var sum1 = parseFloat(price[i].innerHTML) * parseFloat(quantity[i].innerHTML);
+        sum11 += sum1
+        sum[i].innerHTML = sum1;
+
+    }
+    totalofsum.innerHTML = "Total of sales: "+sum11;
+
+</script>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<script src="https://code.jquery.com/jquery3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script>
+$(document).ready(function () {
+$('#example').DataTable({
+dom: 'Bfrtip',
+buttons: [
+'copyHtml5',
+'excelHtml5',
+'csvHtml5',
+'pdfHtml5'
+]
+});
+});
+</script>
+                                
+</div>
+</div>
+</div>
+</div>
+</div>
+

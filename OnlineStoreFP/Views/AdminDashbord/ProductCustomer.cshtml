@@ -1,0 +1,65 @@
+﻿@model IEnumerable<JoinTable>
+@{
+    ViewData["Title"] = "ProductCustomer";
+    Layout = "~/Views/Shared/_AdmindashbordLayout.cshtml";
+}
+<div class="table-responsive-lg">
+<h1>ProductCustomer</h1>
+
+@*<form asp-controller="AdminDashbord"asp-action="ProductCustomer">
+    <label>Date from</label>
+    <input type="date" id="Dfrom" name="Dfrom" />
+    <label>Date To</label>
+    <input type="date" id="Dto" name="Dto" />
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>*@
+
+@if (Model != null)
+{
+<table class="table-responsive-md table align-items-center table-flush table-hover">
+<tr>
+<th>Name</th>
+<th>productname</th>
+<th>productprice</th>
+<th>quantity</th>
+<th>SUM</th>
+
+</tr>
+@foreach (var item in Model)
+{
+<tr >
+<td>@item.userFp.Fname</td>
+<td>@item.productFp.Productname</td>
+<td class="TT">@item.productFp.Price</td>
+<td class="TTT">@item.productuserFp.Quantity</td>
+<td class="TTTT"></td>
+
+</tr>
+}​
+    </table>
+}
+else
+{
+    <h1></h1>
+}
+
+<script>
+
+    var price = document.getElementsByClassName('TT')
+    var sum11 = 0
+    var quantity = document.getElementsByClassName('TTT')
+    var sum = document.getElementsByClassName('TTTT')
+    var totalofsum = document.getElementById('totalofsum')
+    for (let i = 0; i < price.length; i++) {
+
+
+
+        var sum1 = parseFloat(price[i].innerHTML) * parseFloat(quantity[i].innerHTML);
+        sum11 += sum1
+        sum[i].innerHTML = sum1;
+
+    }
+    totalofsum.innerHTML = sum11;
+
+</script>
+</div>
